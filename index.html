@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>영준 & 은주 결혼식에 초대합니다</title>
+<meta name="description" content="2026년 12월 26일 토요일 오후 2시, 포스코센터 4층 서관 아트홀에서 영준과 은주의 결혼식이 열립니다.">
+
+<!-- 카카오톡 등 SNS 공유 시 표시될 정보 -->
+<meta property="og:title" content="영준 ♥ 은주 결혼식에 초대합니다">
+<meta property="og:description" content="2026.12.26 (토) 오후 2시 · 포스코센터 4층 서관 아트홀">
+<meta property="og:image" content="./assets/photos/main.jpg">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ===== 상단 네비게이션 ===== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#home" class="nav__logo">The Wedding of</a>
+    <button class="nav__menu-btn" id="menuBtn" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== 전체 메뉴 오버레이 ===== -->
+<nav class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <button class="menu-overlay__close" id="menuCloseBtn" aria-label="메뉴 닫기">×</button>
+  <ul class="menu-overlay__list">
+    <li><a href="#home" data-menu-link>Home</a></li>
+    <li><a href="#invitation" data-menu-link>Invitation</a></li>
+    <li><a href="#gallery" data-menu-link>The Archive</a></li>
+    <li><a href="#location" data-menu-link>Location</a></li>
+    <li><a href="#account" data-menu-link>Account</a></li>
+    <li><a href="#share" data-menu-link>Share</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ===== 1. 히어로 ===== -->
+  <section class="hero" id="home" data-theme="orange">
+    <div class="hero__top">
+      <p class="hero__eyebrow" data-reveal>You're Invited</p>
+      <h1 class="hero__names" data-reveal>영준 <span>&amp;</span> 은주</h1>
+      <div class="hero__meta" data-reveal>
+        <p>2026년 12월 26일 토요일, 오후 2시</p>
+        <p>포스코센터 4층 서관 아트홀</p>
+      </div>
+    </div>
+    <div class="hero__photo">
+      <img src="./assets/photos/main.jpg" alt="영준 은주 웨딩 사진" onerror="this.closest('.hero__photo').classList.add('is-placeholder')">
+      <div class="hero__photo-fallback">사진을 넣어주세요<br><span>assets/photos/main.jpg</span></div>
+    </div>
+    <div class="hero__bottom"></div>
+  </section>
+
+  <!-- ===== 2. 초대의 말씀 ===== -->
+  <section class="invite" id="invitation" data-theme="dark">
+    <div class="invite__names">
+      <p><span>주상규 · 김순덕</span>의 아들 <strong>영준</strong></p>
+      <p><span>이대승 · 문혜영</span>의 딸 <strong>은주</strong></p>
+    </div>
+
+    <div class="invite__body" data-reveal>
+      <p class="eyebrow">Invitation</p>
+      <p class="invite__text">
+        각자의 자리에서 다른 하루를 살아온 두 사람이<br>
+        이제 같은 방향을 바라보며 걸어가려 합니다.
+      </p>
+      <p class="invite__text">
+        저희 두 사람이 만들어 갈 새로운 시작을<br>
+        귀한 걸음으로 함께해 주시면<br>
+        더없이 큰 기쁨으로 간직하겠습니다.
+      </p>
+      <p class="invite__text invite__text--sub">
+        참, 맛있는 식사도 정성껏 준비해두겠습니다.<br>
+        결혼식은 역시 밥심이니까요.
+      </p>
+    </div>
+
+    <div class="invite__date" data-reveal>
+      <p class="invite__date-num">2026.12.26</p>
+      <p class="invite__date-sub">토요일 오후 2시</p>
+    </div>
+
+    <!-- 캘린더는 JS로 자동 생성됩니다 -->
+    <div class="calendar" id="calendar" data-reveal></div>
+  </section>
+
+  <!-- ===== 3. 갤러리 ===== -->
+  <section class="gallery" id="gallery" data-theme="dark">
+    <p class="eyebrow eyebrow--light">The Archive</p>
+    <h2 class="gallery__title" data-reveal>사진첩</h2>
+
+    <div class="gallery__grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- ===== 4. 오시는 길 ===== -->
+  <section class="location" id="location" data-theme="dark">
+    <p class="eyebrow">Location</p>
+    <h2 class="location__title" data-reveal>포스코센터 서관 아트홀</h2>
+    <p class="location__address" data-reveal>서울특별시 강남구 테헤란로 440, 4층</p>
+
+    <div class="location__map" data-reveal>
+      <iframe
+        title="포스코센터 위치 지도"
+        src="https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%ED%85%8C%ED%97%A4%EB%9E%80%EB%A1%9C%20440%20%ED%8F%AC%EC%8A%A4%EC%BD%94%EC%84%BC%ED%84%B0&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="location__buttons" data-reveal>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://map.naver.com/p/search/서울특별시 강남구 테헤란로 440 포스코센터">네이버 지도 ↗</a>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://map.kakao.com/link/search/서울특별시 강남구 테헤란로 440 포스코센터">카카오맵 ↗</a>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://tmap.life/edaba566">티맵 ↗</a>
+    </div>
+
+    <div class="accordion" data-reveal>
+      <div class="accordion__item">
+        <button class="accordion__trigger" data-accordion-trigger>
+          <span>지하철 이용 안내</span>
+          <i class="accordion__icon">+</i>
+        </button>
+        <div class="accordion__panel">
+          <p>2호선 삼성역 하차 후 도보 약 7분 (포스코사거리 방면)</p>
+          <p>분당선 선릉역 하차 후 도보 약 10분</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger" data-accordion-trigger>
+          <span>주차 안내</span>
+          <i class="accordion__icon">+</i>
+        </button>
+        <div class="accordion__panel">
+          <p>포스코센터 지하주차장 이용 가능 (하객 주차 안내 예정)</p>
+          <p>테헤란로 일대 상습 정체 구간이니 대중교통 이용을 권해드립니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. 마음 전하실 곳 ===== -->
+  <section class="account" id="account" data-theme="dark">
+    <p class="eyebrow">Account</p>
+    <h2 class="account__title" data-reveal>마음 전하실 곳</h2>
+
+    <div class="accordion" data-reveal>
+      <div class="accordion__item">
+        <button class="accordion__trigger" data-accordion-trigger>
+          <span>신랑측 계좌번호</span>
+          <i class="accordion__icon">+</i>
+        </button>
+        <div class="accordion__panel">
+          <ul class="account__list">
+            <li>
+              <div><strong>주영준</strong><span>우리은행 1002-047-943500</span></div>
+              <button class="copy-btn" data-copy="1002-047-943500">복사</button>
+            </li>
+            <li>
+              <div><strong>주상규</strong><span>우리은행 137-175738-12-001</span></div>
+              <button class="copy-btn" data-copy="137-175738-12-001">복사</button>
+            </li>
+            <li>
+              <div><strong>김순덕</strong><span>우리은행 1002-006-773653</span></div>
+              <button class="copy-btn" data-copy="1002-006-773653">복사</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger" data-accordion-trigger>
+          <span>신부측 계좌번호</span>
+          <i class="accordion__icon">+</i>
+        </button>
+        <div class="accordion__panel">
+          <ul class="account__list">
+            <li>
+              <div><strong>이은주</strong><span>국민은행 297401-04-147816</span></div>
+              <button class="copy-btn" data-copy="297401-04-147816">복사</button>
+            </li>
+            <li>
+              <div><strong>이대승</strong><span>기업은행 013-010880-03-013</span></div>
+              <button class="copy-btn" data-copy="013-010880-03-013">복사</button>
+            </li>
+            <li>
+              <div><strong>문혜영</strong><span>기업은행 013-012633-02-022</span></div>
+              <button class="copy-btn" data-copy="013-012633-02-022">복사</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. 공유하기 ===== -->
+  <section class="share" id="share" data-theme="orange">
+    <p class="eyebrow eyebrow--light">Share</p>
+    <h2 class="share__title" data-reveal>소중한 분들에게<br>전해주세요</h2>
+    <div class="share__buttons" data-reveal>
+      <button class="btn btn--light" id="shareBtn">공유하기</button>
+      <button class="btn btn--outline" id="copyLinkBtn">링크 복사</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>영준 &amp; 은주의 결혼식</p>
+    <p>2026. 12. 26.</p>
+  </footer>
+
+</main>
+
+<!-- ===== 전체 사진첩 오버레이 ===== -->
+<div class="archive" id="archive" aria-hidden="true">
+  <div class="archive__header">
+    <button class="archive__back" id="archiveBack" aria-label="뒤로">‹</button>
+    <span>The Archive</span>
+    <button class="archive__close" id="archiveClose" aria-label="닫기">×</button>
+  </div>
+  <p class="archive__intro">
+    잘 나온 사진 위주로 골랐습니다.<br>
+    물론, 서로의 동의는 받았습니다. 아마도요...^^?
+  </p>
+  <div class="archive__grid" id="archiveGrid"></div>
+</div>
+
+<!-- ===== 갤러리 라이트박스 ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox__close" id="lightboxClose" aria-label="닫기">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="이전 사진">‹</button>
+  <div class="lightbox__stage">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox__placeholder" id="lightboxPlaceholder">Preview</div>
+  </div>
+  <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="다음 사진">›</button>
+  <div class="lightbox__footer">
+    <span id="lightboxCount">01 / 06</span>
+    <span>THE ARCHIVE</span>
+  </div>
+</div>
+
+<!-- ===== 배경음악 ===== -->
+<audio id="bgm" src="./assets/bgm/song.mp3" loop preload="none"></audio>
+<button class="bgm-toggle" id="bgmToggle" aria-label="배경음악 재생">
+  <svg id="bgmIcon" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M9 18V5l12-2v13"></path><circle fill="currentColor" cx="6" cy="18" r="3"></circle><circle fill="currentColor" cx="18" cy="16" r="3"></circle></svg>
+</button>
+
+<!-- ===== 토스트 메시지 ===== -->
+<div class="toast" id="toast"></div>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
