@@ -77,7 +77,7 @@ button {
   width: 100%;
   max-width: var(--max-width);
   z-index: 40;
-  pointer-events: none;
+  background: var(--orange);
 }
 .nav__inner {
   display: flex;
@@ -90,14 +90,12 @@ button {
   font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--ink-on-orange);
-  pointer-events: auto;
 }
 .nav__menu-btn {
   width: 32px; height: 32px;
   display: flex; flex-direction: column;
   align-items: flex-end; justify-content: center;
   gap: 6px;
-  pointer-events: auto;
 }
 .nav__menu-btn span {
   display: block;
@@ -109,13 +107,6 @@ button {
 .nav__menu-btn span:nth-child(1) { width: 22px; }
 .nav__menu-btn span:nth-child(2) { width: 15px; }
 .nav__menu-btn:hover span:nth-child(2) { width: 22px; }
-
-/* 스크롤이 검정 섹션 위에 있을 때 로고/버튼 색 반전 */
-.nav.is-on-dark .nav__logo,
-.nav.is-on-dark .nav__menu-btn span {
-  color: var(--white);
-  background: var(--white);
-}
 
 /* ===================== 전체 메뉴 오버레이 ===================== */
 .menu-overlay {
@@ -167,6 +158,7 @@ button {
 .hero__eyebrow {
   font-family: var(--font-serif);
   font-weight: 600;
+  font-style: italic;
   font-size: 42px;
   line-height: 1.15;
   margin: 0 0 18px;
@@ -361,16 +353,19 @@ button {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 20px;
   font-size: 13px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   background: var(--orange);
+  color: var(--ink-on-orange);
 }
-.archive__back, .archive__close { font-size: 26px; line-height: 1; }
+.archive__back, .archive__close { font-size: 26px; line-height: 1; color: var(--ink-on-orange); }
 .archive__intro {
-  padding: 4px 24px 24px;
-  font-size: 13.5px;
-  line-height: 1.8;
-  color: rgba(32,20,6,0.75);
+  padding: 8px 24px 28px;
+  font-size: 14.5px;
+  line-height: 1.85;
+  font-weight: 500;
+  color: rgba(32,20,6,0.88);
 }
 .archive__grid {
   display: grid;
@@ -583,6 +578,15 @@ button {
   padding: 32px 0 40px;
 }
 .footer p { margin: 4px 0; }
+.footer__credit {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 11.5px;
+  color: rgba(245,241,234,0.35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer__credit:hover { color: rgba(245,241,234,0.6); }
 
 /* ===================== 배경음악 토글 ===================== */
 .bgm-toggle {

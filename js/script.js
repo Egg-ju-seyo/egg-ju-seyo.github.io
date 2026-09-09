@@ -66,24 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* -----------------------------------------------------
-     2. 스크롤에 따른 네비게이션 색상 전환 (오렌지 위 ↔ 검정 위)
-  ----------------------------------------------------- */
-  const nav = document.getElementById('nav');
-  const themedSections = document.querySelectorAll('[data-theme]');
-
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const theme = entry.target.getAttribute('data-theme');
-        nav.classList.toggle('is-on-dark', theme === 'dark');
-      }
-    });
-  }, { rootMargin: '-50% 0px -50% 0px' });
-
-  themedSections.forEach(sec => navObserver.observe(sec));
-
-  /* -----------------------------------------------------
-     3. 스크롤 리빌 애니메이션
+     2. 스크롤 리빌 애니메이션
   ----------------------------------------------------- */
   const revealItems = document.querySelectorAll('[data-reveal]');
   const revealObserver = new IntersectionObserver((entries) => {
@@ -244,6 +227,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowLeft') lightboxPrev.click();
     if (e.key === 'ArrowRight') lightboxNext.click();
   });
+
+  // 모바일 스와이프로 사진 넘기기
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const lightboxStage = document.querySelector('.lightbox__stage');
+  lightboxStage.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+  lightboxStage.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) lightboxNext.click();
+      else lightboxPrev.click();
+    }
+  }, { passive: true });
 
   /* -----------------------------------------------------
      8. 아코디언 (오시는 길 / 계좌번호)
