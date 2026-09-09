@@ -597,7 +597,7 @@ button {
 .bgm-toggle {
   position: fixed;
   bottom: 20px; right: 20px;
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   border-radius: 50%;
   background: var(--white);
   color: var(--ink);
@@ -605,7 +605,23 @@ button {
   box-shadow: 0 4px 14px rgba(0,0,0,0.25);
   z-index: 50;
 }
-.bgm-toggle.is-playing #bgmIcon { animation: spin 4s linear infinite; }
+.bgm-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  opacity: 0;
+  transform: scale(0.85);
+  animation: bgm-pulse 2.2s ease-out infinite;
+}
+.bgm-toggle.is-playing::after { animation: none; opacity: 0; }
+@keyframes bgm-pulse {
+  0% { opacity: 0.55; transform: scale(0.85); }
+  70% { opacity: 0; transform: scale(1.25); }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+.bgm-toggle.is-playing #bgmIcon { animation: spin 3.2s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===================== 토스트 ===================== */
