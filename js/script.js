@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
       galleryGrid.appendChild(moreDiv);
     } else {
       const thumb = makeThumb(photo, i);
-      thumb.addEventListener('click', () => openLightbox(i));
+      thumb.addEventListener('click', () => openArchive());
       galleryGrid.appendChild(thumb);
     }
   });
@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ----------------------------------------------------- */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxFrame = document.getElementById('lightboxFrame');
   const lightboxPlaceholder = document.getElementById('lightboxPlaceholder');
   const lightboxCount = document.getElementById('lightboxCount');
   const lightboxClose = document.getElementById('lightboxClose');
@@ -203,6 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function openLightbox(index) {
     currentIndex = index;
     updateLightbox();
+    lightboxFrame.style.transition = 'none';
+    lightboxFrame.style.transform = 'translateX(0)';
+    lightboxFrame.style.opacity = '1';
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -212,20 +216,37 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = archive.classList.contains('is-open') ? 'hidden' : '';
   }
+
+  // dir: 1(다음) 또는 -1(이전) — 슬라이드 넘기는 모션과 함께 사진 전환
+  let isSliding = false;
+  function changeSlide(dir) {
+    if (isSliding) return;
+    isSliding = true;
+    lightboxFrame.style.transition = 'transform 0.28s ease, opacity 0.28s ease';
+    lightboxFrame.style.transform = `translateX(${dir * -36}px)`;
+    lightboxFrame.style.opacity = '0';
+    setTimeout(() => {
+      currentIndex = (currentIndex + dir + photos.length) % photos.length;
+      updateLightbox();
+      lightboxFrame.style.transition = 'none';
+      lightboxFrame.style.transform = `translateX(${dir * 36}px)`;
+      lightboxFrame.style.opacity = '0';
+      void lightboxFrame.offsetWidth; // 강제 리플로우로 트랜지션 재시작
+      lightboxFrame.style.transition = 'transform 0.28s ease, opacity 0.28s ease';
+      lightboxFrame.style.transform = 'translateX(0)';
+      lightboxFrame.style.opacity = '1';
+      setTimeout(() => { isSliding = false; }, 280);
+    }, 280);
+  }
+
   lightboxClose.addEventListener('click', closeLightbox);
-  lightboxPrev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-    updateLightbox();
-  });
-  lightboxNext.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % photos.length;
-    updateLightbox();
-  });
+  lightboxPrev.addEventListener('click', () => changeSlide(-1));
+  lightboxNext.addEventListener('click', () => changeSlide(1));
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('is-open')) return;
     if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lightboxPrev.click();
-    if (e.key === 'ArrowRight') lightboxNext.click();
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key === 'ArrowRight') changeSlide(1);
   });
 
   // 모바일 스와이프로 사진 넘기기
@@ -240,8 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dx = e.changedTouches[0].clientX - touchStartX;
     const dy = e.changedTouches[0].clientY - touchStartY;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-      if (dx < 0) lightboxNext.click();
-      else lightboxPrev.click();
+      changeSlide(dx < 0 ? 1 : -1);
     }
   }, { passive: true });
 
