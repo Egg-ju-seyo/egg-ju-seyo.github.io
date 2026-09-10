@@ -240,14 +240,11 @@
 <!-- ===== 배경음악 ===== -->
 <audio id="bgm" src="./assets/bgm/song.mp3" loop preload="none"></audio>
 <button class="bgm-toggle" id="bgmToggle" aria-label="배경음악 재생">
-  <svg id="bgmIcon" viewBox="0 0 44 44" width="30" height="30">
-    <circle cx="22" cy="22" r="20" fill="#161616"/>
-    <circle cx="22" cy="22" r="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-    <circle cx="22" cy="22" r="15.5" fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-    <circle cx="22" cy="22" r="11.5" fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="0.8"/>
-    <circle cx="22" cy="22" r="8" fill="var(--orange, #E8541D)"/>
-    <circle cx="22" cy="22" r="2" fill="#161616"/>
-  </svg>
+  <span class="bgm-toggle__icon">
+    <svg id="bgmIconSpeaker" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M4 9v6h4l5 5V4L8 9H4Z"/><path fill="currentColor" d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    <span id="bgmIconEq" class="bgm-eq"><i></i><i></i><i></i></span>
+  </span>
+  <span class="bgm-toggle__label" id="bgmLabel">음악 재생</span>
 </button>
 
 <!-- ===== 토스트 메시지 ===== -->

@@ -366,6 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ----------------------------------------------------- */
   const bgm = document.getElementById('bgm');
   const bgmToggle = document.getElementById('bgmToggle');
+  const bgmLabel = document.getElementById('bgmLabel');
   let isPlaying = false;
 
   bgmToggle.addEventListener('click', async () => {
@@ -374,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await bgm.play();
         isPlaying = true;
         bgmToggle.classList.add('is-playing');
+        bgmLabel.textContent = '재생 중';
       } catch (err) {
         showToast('배경음악 파일을 assets/bgm/song.mp3 에 추가해주세요');
       }
@@ -381,6 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bgm.pause();
       isPlaying = false;
       bgmToggle.classList.remove('is-playing');
+      bgmLabel.textContent = '음악 재생';
     }
   });
 
