@@ -109,6 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCalendar(2026, 12, 26);
 
   /* -----------------------------------------------------
+     4-1. 네이버 지도 초기화 (포스코센터)
+  ----------------------------------------------------- */
+  if (window.naver && window.naver.maps) {
+    const posco = new naver.maps.LatLng(37.505804, 127.053959);
+    const naverMap = new naver.maps.Map('naverMap', {
+      center: posco,
+      zoom: 16,
+    });
+    new naver.maps.Marker({ position: posco, map: naverMap });
+  }
+
+  /* -----------------------------------------------------
      5. 갤러리 그리드 렌더링
   ----------------------------------------------------- */
   const galleryGrid = document.getElementById('galleryGrid');
